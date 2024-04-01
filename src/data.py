@@ -10,8 +10,6 @@ import glob
 import pandas as pd
 import numpy as np
 
-
-
 class EcgRecord:
     def __init__(self, record_header, record_signal):
         self.record_number = record_header.__dict__['record_name']
@@ -34,3 +32,16 @@ class EcgRecord:
                 f"Gender: {self.gender}\n"
                 f"Age: {self.age}\n"
                 f"Medications: {self.medication}")
+
+def import_data():
+    mitbih_records = []
+    for record in glob.glob("../mitdb/*.dat"):
+        record_num = re.findall(r'\d+', record)[0]
+        record_header = wfdb.rdheader(f'../mitdb/{record_num}')
+        record = wfdb.rdrecord(f'../mitdb/{record_num}')
+        data = {}
+        for j in range(record_header.__dict__['n_sig']):
+            data[record_header.__dict__['sig_name'][j]] = array_df = record.p_signal[:,j]
+        record_signal = pd.DataFrame(data)
+        mitbih_records.append(EcgRecord(record_header, record_signal))
+    return mitbih_records
