@@ -5,6 +5,9 @@ This repository is part of my research project, Application of Deep Learning Tec
 
 Este repositório faz parte do meu projeto de pesquisa, Aplicação de Técnica de Aprendizagem Profunda para Detecção de Arritmia Cardíaca em Sinais de Eletrocardiograma, financiado pelo Conselho Nacional de Desenvolvimento Científico e Tecnológico(CNPq).
 
+## Database
+
+The dataset used in this project is the public data [MIT-BIH Arrhythmia Database](https://physionet.org/content/mitdb/1.0.0/). This dataset contains 48 ecg records with signal annotations 
 
 ## License
 
